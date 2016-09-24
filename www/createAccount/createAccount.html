@@ -3,7 +3,7 @@
     <h1 class="title">Login</h1>
   </ion-header-bar>
   <ion-content>
-    <form>
+    <form ng-submit="vm.create()">
       <div class="list">
         <label class="item item-input item-floating-label">
           <span class="input-label">First Name</span>
@@ -18,7 +18,7 @@
           <input type="text" placeholder="Email">
         </label>
         <div class="padding">
-          <button class="button button-block button-positive" ng-click="vm.create()">Create</button>
+          <button class="button button-block button-positive">Create</button>
         </div>
         
       </div>
