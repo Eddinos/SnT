@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('createAccount', [])
+       .module('authentication', [])
        .service('CreateAccountApi', CreateAccountApi);
 
   CreateAccountApi.$inject = ['$http'];

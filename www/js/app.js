@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'createAccount'])
+angular.module('starter', ['ionic', 'starter.controllers', 'authentication'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,6 +25,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'createAccount'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+  .state('outside', {
+    url: '/outside',
+    abstract: true,
+    templateUrl: 'templates/outside.html'
+  })
+
+  .state('outside.login', {
+    url: '/login',
+    templateUrl: 'authentication/login/login.html',
+    controller: 'LoginController',
+    controllerAs: 'Login'
+  })
+
+  .state('outside.createAccount', {
+    url: '/createAccount',
+    templateUrl: 'authentication/createAccount/createAccount.html',
+    controller: 'CreateAccountController'
+  })
+
+
+
+  
+
     .state('app', {
     url: '/app',
     abstract: true,
@@ -32,15 +55,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'createAccount'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.profile', {
+    url: '/profile',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/inside.html'
       }
     }
   })
-
+/*
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -68,16 +91,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'createAccount'])
       }
     }
   })
-  .state('app.createAccount', {
-    url: '/createAccount',
-    views: {
-      'menuContent': {
-        templateUrl: 'createAccount/createAccount.html',
-        controller: 'CreateAccountController',
-        controllerAs: 'vm'
+  .state('auth.createAccount', {
+      url: '/auth/createAccount',
+      templateUrl: 'createAccount/createAccount.html',
+      controller: 'CreateAccountController'
+    }
+  ).
+  state('auth.login',
+    url: '/auth/login',
+    templateUrl: 'templates/login.html');
+  ).
+  state('auth.createAccount',
+    url: '/auth/createAccount',
+    templateUrl: 'templates/login.html')*/;
+
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/outside/login');
+})
+
+.run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
+  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+    if (!AuthService.isAuthenticated()) {
+      console.log(next.name);
+      if (next.name !== 'outside.login' && next.name !== 'outside.createAccount') {
+        event.preventDefault();
+        $state.go('outside.login');
       }
     }
   });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/createAccount');
 });

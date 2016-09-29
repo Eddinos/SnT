@@ -1,10 +1,10 @@
 (function(){
 
   angular
-       .module('createAccount')
+       .module('authentication')
        .controller('CreateAccountController', CreateAccountController);
 
-  CreateAccountController.$inject = ['$scope', 'CreateAccountApi'];
+  CreateAccountController.$inject = ['$scope', 'CreateAccountApi', '$state', 'AuthService'];
 
   function CreateAccountController($scope, CreateAccountApi) {
     var vm = this;
