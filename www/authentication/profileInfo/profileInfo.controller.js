@@ -3,9 +3,9 @@
        .module('authentication')
        .controller('ProfileInfoController', ProfileInfoController);
 
-    ProfileInfoController.$inject = ['$scope', '$state', 'AuthService', '$ionicPopup', 'ProfileInfoApi'];
+    ProfileInfoController.$inject = ['$scope', '$state', 'AuthService', '$ionicPopup', 'ProfileInfoApi', '$timeout'];
 
-    function ProfileInfoController($scope, $state, AuthService, $ionicPopup, ProfileInfoApi)
+    function ProfileInfoController($scope, $state, AuthService, $ionicPopup, ProfileInfoApi, $timeout)
     {
     	vm = this;
 
@@ -43,6 +43,7 @@
 		  function logout() {
 		    AuthService.logout();
 		    $state.go('outside.login');
+		    
 		  };
     }
 })();

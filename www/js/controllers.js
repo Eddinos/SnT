@@ -42,11 +42,6 @@ angular.module('starter.controllers', [])
   $scope.logout = function() {
     AuthService.logout();
     $state.go('outside.login');
-    $timeout(function () {
-          $ionicHistory.clearCache();
-          $ionicHistory.clearHistory();
-          $log.debug('clearing cache')
-      },300)
   };
 
   

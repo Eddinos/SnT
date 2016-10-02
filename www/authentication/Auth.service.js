@@ -1,6 +1,6 @@
-angular.module('starter')
+angular.module('authentication')
  
-.service('AuthService', function($q, $http, API_ENDPOINT) {
+.service('AuthService', function($q, $http, API_ENDPOINT, $timeout, $ionicHistory) {
   var LOCAL_TOKEN_KEY = 'yourTokenKey';
   var isAuthenticated = false;
   var authToken;
@@ -59,6 +59,11 @@ angular.module('starter')
  
   var logout = function() {
     destroyUserCredentials();
+    $timeout(function () {
+          $ionicHistory.clearCache();
+          $ionicHistory.clearHistory();
+          $log.debug('clearing cache')
+      },300)
   };
  
   loadUserCredentials();

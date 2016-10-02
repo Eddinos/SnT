@@ -1,10 +1,10 @@
 <ion-view view-title="Sign up">
   <ion-content>
-    <form ng-submit="CreateAccount.create()">
+    <form ng-submit="CreateAccount.create(user)">
       <div class="list">
         <label class="item item-input item-floating-label">
           <span class="input-label">First Name</span>
-          <input type="text" placeholder="First Name" ng-model="user.firstName">
+          <input type="text" placeholder="First Name" ng-model="user.name">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Last Name</span>
