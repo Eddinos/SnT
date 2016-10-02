@@ -41,7 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'authentication'])
   .state('outside.createAccount', {
     url: '/createAccount',
     templateUrl: 'authentication/createAccount/createAccount.html',
-    controller: 'CreateAccountController'
+    controller: 'CreateAccountController',
+    controllerAs: 'CreateAccount'
   })
 
 
@@ -59,7 +60,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'authentication'])
     url: '/profile',
     views: {
       'menuContent': {
-        templateUrl: 'templates/inside.html'
+        templateUrl: 'authentication/profileInfo/profileInfo.html',
+        controller: 'ProfileInfoController',
+        controllerAs: 'ProfileInfo'
       }
     }
   })

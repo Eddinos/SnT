@@ -6,17 +6,13 @@
 
   CreateAccountController.$inject = ['$scope', 'CreateAccountApi', '$state', 'AuthService'];
 
-  function CreateAccountController($scope, CreateAccountApi) {
+  function CreateAccountController($scope, CreateAccountApi, AuthService, $state) {
     var vm = this;
 
     vm.create = create;
 
-    $scope.patrick = function() {
-      CreateAccountApi.create();
-    }
-
-    function create() {
-    	CreateAccountApi.create();
+    function create(user) {
+    	
     }
 
   }
