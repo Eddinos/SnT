@@ -8,20 +8,23 @@
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Last Name</span>
-          <input type="text" placeholder="Last Name" ng-model="user.lastName">
+          <input type="text" placeholder="Last Name (optionnal)" ng-model="user.lastName">
         </label>
         <label class="item item-input item-floating-label">
-          <span class="input-label">Email</span>
-          <input type="text" placeholder="Email" ng-model="user.email">
+          <span class="input-label">Email address</span>
+          <input type="email" placeholder="Email (optionnal)" ng-model="user.email">
         </label>
         <label class="item item-input item-floating-label">
           <span class="input-label">Password</span>
-          <input type="text" placeholder="Password" ng-model="user.password">
+          <input type="password" placeholder="Password" ng-model="user.password">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label" ng-style="{color: user.password != confirmedPwd ? 'red' : 'default'}">Confirm password</span>
+          <input type="password" placeholder="Confirm password" ng-model="confirmedPwd">
         </label>
         <div class="padding">
-          <button class="button button-block button-stable">Create</button>
+          <button class="button button-block button-stable" ng-class="{disabled: user.password != confirmedPwd}">Create</button>
         </div>
-        
       </div>
     </form>
   </ion-content>
